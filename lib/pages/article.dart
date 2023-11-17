@@ -5,6 +5,7 @@ import '../models/articlemodel.dart';
 import '../provider/articleprovider.dart';
 import '../style.dart';
 import '../widgets/articlecard.dart';
+import 'articledetail.dart';
 // import '../widgets/menu.dart';
 
 class ArticlePage extends StatefulWidget {
@@ -181,12 +182,12 @@ class _ArticlePageState extends State<ArticlePage> {
                 ),
                 InkWell(
                   onTap: () {
-                    // Navigator.push(
-                    //     context,
-                    //     MaterialPageRoute(
-                    //         builder: (context) => ArticleDetailPage(
-                    //               articleId: "${firstArticle.id}",
-                    //             )));
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => ArticleDetailPage(
+                                  articleId: "${firstArticle.id}",
+                                )));
                   },
                   child: ArticleCard(
                     imageUrl: "${firstArticle.imageUrl}",
