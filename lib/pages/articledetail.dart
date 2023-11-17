@@ -5,6 +5,7 @@ import 'package:metrodata_academy/provider/articleprovider.dart';
 
 import '../models/articlemodel.dart';
 import '../style.dart';
+import '../widgets/menu.dart';
 
 class ArticleDetailPage extends StatefulWidget {
   final String articleId;
@@ -83,7 +84,7 @@ class _ArticleDetailPageState extends State<ArticleDetailPage> {
               )
             ],
           ),
-          // endDrawer: Menu(),
+          endDrawer: Menu(),
           body: Padding(
               padding: const EdgeInsets.all(20.0),
               child: ListView(children: [

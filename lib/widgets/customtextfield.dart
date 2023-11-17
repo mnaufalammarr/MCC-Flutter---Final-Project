@@ -10,6 +10,10 @@ class CustomTextFieldWidget extends StatelessWidget {
   final Widget? suffix;
   final bool? pass;
   final ValueChanged<String>? onChanged;
+  final int? maxChar;
+  final TextInputType? textInputType;
+  final int? maxLines;
+  final int? minLines;
 
   CustomTextFieldWidget({
     Key? key,
@@ -20,6 +24,10 @@ class CustomTextFieldWidget extends StatelessWidget {
     this.suffix,
     this.pass = false,
     this.onChanged,
+    this.maxChar,
+    this.textInputType,
+    this.maxLines,
+    this.minLines,
   }) : super(key: key);
 
   @override
@@ -47,6 +55,10 @@ class CustomTextFieldWidget extends StatelessWidget {
           obscureText: pass!,
           obscuringCharacter: "*",
           readOnly: readonly!,
+          maxLength: maxChar,
+          maxLines: maxLines ?? 1,
+          minLines: minLines ?? maxLines,
+          keyboardType: textInputType,
           controller: controller,
           decoration: InputDecoration(
               contentPadding: EdgeInsets.symmetric(vertical: 5, horizontal: 15),

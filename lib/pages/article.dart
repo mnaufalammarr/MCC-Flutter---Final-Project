@@ -5,6 +5,7 @@ import '../models/articlemodel.dart';
 import '../provider/articleprovider.dart';
 import '../style.dart';
 import '../widgets/articlecard.dart';
+import '../widgets/menu.dart';
 import 'articledetail.dart';
 // import '../widgets/menu.dart';
 
@@ -141,7 +142,7 @@ class _ArticlePageState extends State<ArticlePage> {
               )
             ],
           ),
-          // endDrawer: Menu(),
+          endDrawer: Menu(),
           floatingActionButton: FloatingActionButton(
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),

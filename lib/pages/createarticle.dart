@@ -8,6 +8,7 @@ import 'package:metrodata_academy/widgets/popupoption.dart';
 
 import '../style.dart';
 import '../widgets/imageutils.dart';
+import '../widgets/menu.dart';
 
 class CreateArticlePage extends StatefulWidget {
   const CreateArticlePage({Key? key}) : super(key: key);
@@ -78,7 +79,7 @@ class _CreateArticlePageState extends State<CreateArticlePage> {
           )
         ],
       ),
-      // endDrawer: Menu(),
+      endDrawer: Menu(),
       body: Padding(
         padding: EdgeInsets.all(20),
         child: Card(
