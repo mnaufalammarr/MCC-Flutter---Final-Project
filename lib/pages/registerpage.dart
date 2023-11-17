@@ -41,7 +41,6 @@ class _RegisterPageState extends State<RegisterPage> {
       _password.text.isNotEmpty &&
       _confirmpassword.text.isNotEmpty &&
       _term &&
-      _subscribe &&
       _passwordConfirm &&
       _isPassword8c &&
       _isPasswordUpper;

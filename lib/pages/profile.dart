@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 import '../models/profilemodel.dart';
 import '../provider/profileprovider.dart';
@@ -48,16 +49,16 @@ class _ProfilePageState extends State<ProfilePage> {
   final TextEditingController _confirmnewpassword = TextEditingController();
 
   Future<void> _selectDate(BuildContext context) async {
-    final DateTime? pickedDate = await showDatePicker(
+    final DateTime? pickDate = await showDatePicker(
       context: context,
       initialDate: DateTime.now(),
       firstDate: DateTime(1900),
       lastDate: DateTime.now(),
     );
-    if (pickedDate != null && pickedDate != _selectedDate) {
+    if (pickDate != null && pickDate != _tanggalLahir) {
+      final formattedDate = DateFormat("yyyy-MM-dd").format(pickDate);
       setState(() {
-        _tanggalLahir.text =
-            '${pickedDate.day}/${pickedDate.month}/${pickedDate.year}';
+        _tanggalLahir.text = formattedDate;
       });
     }
   }
@@ -93,11 +94,11 @@ class _ProfilePageState extends State<ProfilePage> {
       */
       _name.text = widget.profile!.name!;
       _username.text = widget.profile!.username!;
+      _email.text = widget.profile!.email!;
       _alamat.text = widget.profile!.alamat!;
       _jenisKelamin = widget.profile?.jenisKelamin;
-      // _profilePicture.text = profile?.profilePicture;
+      // profilePicture = profile?.profilePicture;
       _tanggalLahir.text = widget.profile!.tanggalLahir!;
-      _email.text = widget.profile!.tanggalLahir!;
 
       setState(() {});
     });
@@ -191,10 +192,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         ),
                       ),
                     )
-                  : Icon(
-                      Icons.person,
-                      size: 50,
-                    )),
+                  : YourImageWidget()),
           SizedBox(
             width: 15,
           ),

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:metrodata_academy/pages/article.dart';
+import 'package:metrodata_academy/pages/profilemenu.dart';
 
 import '../style.dart';
 
@@ -36,13 +38,8 @@ class Menu extends StatelessWidget {
             ),
             onTap: () {
               Navigator.pop(context);
-              if (!(Navigator.canPop(context) &&
-                  ModalRoute.of(context)?.settings.name == '/article')) {
-                Navigator.pushReplacementNamed(context, '/article');
-              } else {
-                // Pengguna berada di halaman Home, tidak melakukan apa-apa
-                print('Pengguna sudah berada di halaman Home.');
-              }
+              Navigator.of(context)
+                  .push(MaterialPageRoute(builder: (context) => ArticlePage()));
             },
           ),
           SizedBox(
@@ -74,13 +71,13 @@ class Menu extends StatelessWidget {
             ),
             onTap: () {
               Navigator.pop(context);
-              if (!(Navigator.canPop(context) &&
-                  ModalRoute.of(context)!.settings.name == '/profilemenu')) {
-                Navigator.pushReplacementNamed(context, '/profilemenu');
-              } else {
-                // Pengguna berada di halaman Home, tidak melakukan apa-apa
-                print('Pengguna sudah berada di halaman Home.');
-              }
+              // if (!(Navigator.canPop(context))) {
+              Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => ProfileMenuPage()));
+              // } else {
+              //   // Pengguna berada di halaman Home, tidak melakukan apa-apa
+              //   print('Pengguna sudah berada di halaman Home.');
+              // }
             },
           ),
         ],
