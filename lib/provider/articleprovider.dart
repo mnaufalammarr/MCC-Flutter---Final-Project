@@ -1,5 +1,6 @@
 import 'dart:convert';
-
+import 'dart:io';
+import 'package:http_parser/http_parser.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import '../session.dart';
@@ -94,6 +95,35 @@ class ArticleProvider extends ChangeNotifier {
         return result;
       } else {
         return result;
+      }
+    } catch (error) {
+      print('Terjadi kesalahan: $error');
+      return null; // Mengembalikan null jika terjadi kesalahan
+    }
+  }
+
+  Future<dynamic> uploadarticleimage(File imagefile) async {
+    try {
+      var request = http.MultipartRequest(
+          'POST',
+          Uri.parse(
+              '${Config.SOCMED_END_POINT}master-service/upload/image/articles-image'));
+
+      request.headers['Authorization'] =
+          "Bearer ${await Session.get(Session.TOKEN_SESSION_KEY)}";
+
+      request.files.add(http.MultipartFile(
+          'image', imagefile.readAsBytes().asStream(), imagefile.lengthSync(),
+          filename: 'image.jpg', contentType: MediaType('image', 'jpeg')));
+      var response = await request.send();
+      var responseString = await response.stream.bytesToString();
+
+      final result = json.decode('${responseString}');
+
+      if (response.statusCode == 200) {
+        return result;
+      } else {
+        print(result["data"]);
       }
     } catch (error) {
       print('Terjadi kesalahan: $error');

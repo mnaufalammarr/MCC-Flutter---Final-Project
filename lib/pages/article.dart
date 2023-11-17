@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:metrodata_academy/pages/createarticle.dart';
 
 import '../models/articlemodel.dart';
 import '../provider/articleprovider.dart';
@@ -15,13 +16,13 @@ class ArticlePage extends StatefulWidget {
 
 class _ArticlePageState extends State<ArticlePage> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
-  late ArticleProvider commonProvider;
+  late ArticleProvider articleProvider;
   late List<Article> articles = [];
   late bool isLoading = true;
 
   @override
   void initState() {
-    commonProvider = new ArticleProvider();
+    articleProvider = new ArticleProvider();
     onGetListArticle(context, 1, "", "").then((jsonList) {
       print(jsonList);
       if (jsonList != null && jsonList is List<dynamic>) {
@@ -80,9 +81,9 @@ class _ArticlePageState extends State<ArticlePage> {
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
             backgroundColor: Styles.blue,
             onPressed: () {
-              // Navigator.push(context,
-              //     MaterialPageRoute(builder: (context) => ArticleBaruPage()));
-              // print('Tombol tambah ditekan!');
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => CreateArticlePage()));
+              print('Tombol tambah ditekan!');
             },
             tooltip: 'Buat artikel Baru', // Teks tooltip saat FAB ditekan lama
             child: Icon(
@@ -145,9 +146,8 @@ class _ArticlePageState extends State<ArticlePage> {
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
             backgroundColor: Styles.blue,
             onPressed: () {
-              // Navigator.push(context,
-              //     MaterialPageRoute(builder: (context) => ArticleBaruPage()));
-              // print('Tombol tambah ditekan!');
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => CreateArticlePage()));
             },
             tooltip: 'Buat artikel Baru', // Teks tooltip saat FAB ditekan lama
             child: Icon(
@@ -244,7 +244,8 @@ class _ArticlePageState extends State<ArticlePage> {
 
   onGetListArticle(
       BuildContext context, int page, String title, String category) async {
-    dynamic result = await commonProvider.getlistarticle(page, title, category);
+    dynamic result =
+        await articleProvider.getlistarticle(page, title, category);
 
     if (result != null && result['message'] == "Success") {
       print(result["data"]);
